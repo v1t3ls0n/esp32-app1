@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b1020" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <title>ESP32 Notifier</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --card: #151b30;
+        --accent: #4f8cff;
+        --ok: #34d399;
+        --text: #e8ecf7;
+        --muted: #97a0bd;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+        background: radial-gradient(1200px 600px at 50% -10%, #1a2340 0, var(--bg) 60%), var(--bg);
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .card {
+        width: 100%;
+        max-width: 440px;
+        background: var(--card);
+        border: 1px solid #24304f;
+        border-radius: 20px;
+        padding: 28px 24px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      }
+      .bell {
+        width: 64px; height: 64px;
+        display: grid; place-items: center;
+        margin: 0 auto 14px;
+        background: linear-gradient(160deg, var(--accent), #2f6bff);
+        border-radius: 18px;
+        font-size: 34px;
+      }
+      h1 { font-size: 22px; text-align: center; margin: 0 0 4px; }
+      p.sub { text-align: center; color: var(--muted); margin: 0 0 22px; font-size: 14px; }
+      .status {
+        text-align: center;
+        font-weight: 600;
+        padding: 10px;
+        border-radius: 12px;
+        background: #1d2540;
+        color: var(--muted);
+        margin-bottom: 18px;
+      }
+      .status.ok { color: var(--ok); background: rgba(52, 211, 153, 0.12); }
+      button {
+        width: 100%;
+        border: 0;
+        border-radius: 14px;
+        padding: 15px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        margin-bottom: 12px;
+        color: #fff;
+        transition: transform 0.05s ease, opacity 0.2s ease;
+      }
+      button:active { transform: scale(0.98); }
+      button:disabled { opacity: 0.45; cursor: not-allowed; }
+      #enable { background: linear-gradient(160deg, var(--accent), #2f6bff); }
+      #test { background: #29324f; }
+      pre#log {
+        margin-top: 18px;
+        background: #0c1122;
+        border: 1px solid #24304f;
+        border-radius: 12px;
+        padding: 12px;
+        font-size: 12px;
+        color: var(--muted);
+        max-height: 180px;
+        overflow: auto;
+        white-space: pre-wrap;
+        direction: ltr;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="bell">🔔</div>
+      <h1>ESP32 Notifier</h1>
+      <p class="sub">מקבל הודעות מה-ESP32 ומציג אותן כנוטיפיקיישן</p>
+
+      <div id="status" class="status">טוען…</div>
+
+      <button id="enable">הפעל נוטיפיקיישנים</button>
+      <button id="test" disabled>שלח נוטיפיקיישן בדיקה</button>
+
+      <pre id="log"></pre>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
