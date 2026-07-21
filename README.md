@@ -34,13 +34,13 @@
 
 ```mermaid
 flowchart RL
-    ESP["📡 ESP32<br>(בבית)"]
-    V["☁️ Vercel<br>(השרת בענן)"]
-    G["🌐 שירות ה-Push<br>של גוגל"]
-    P["📱 הטלפון שלכם"]
-    ESP -- "הכפתור נלחץ!<br>(HTTP POST)" --> V
-    V -- "Web Push<br>מוצפן 🔒" --> G
-    G -- "🔔 נוטיפיקיישן" --> P
+    ESP["📡 ESP32<br>⁧(בבית)⁩"]
+    V["☁️ Vercel<br>⁧(השרת בענן)⁩"]
+    G["⁧🌐 שירות ה-Push⁩<br>⁧של גוגל⁩"]
+    P["⁧📱 הטלפון שלכם⁩"]
+    ESP -- "⁧הכפתור נלחץ!⁩<br>(HTTP POST)" --> V
+    V -- "Web Push<br>⁧מוצפן 🔒⁩" --> G
+    G -- "⁧🔔 נוטיפיקיישן⁩" --> P
 ```
 
 <div dir="rtl" style="direction:rtl">
@@ -242,9 +242,9 @@ f75c5d4  יאללה  (הקומיט הראשון)
 
 ```mermaid
 flowchart RL
-    C["🤖 Claude Code<br>כותב ודוחף קוד"] --> GH["☁️ GitHub<br>esp32-app1<br>(מקור האמת)"]
-    GH --> V["🚀 Vercel<br>קורא ומפרסם"]
-    U["👩‍💻 אנחנו<br>צופים ועוקבים"] --> GH
+    C["🤖 Claude Code<br>⁧כותב ודוחף קוד⁩"] --> GH["☁️ GitHub<br>esp32-app1<br>⁧(מקור האמת)⁩"]
+    GH --> V["🚀 Vercel<br>⁧קורא ומפרסם⁩"]
+    U["⁧👩‍💻 אנחנו⁩<br>⁧צופים ועוקבים⁩"] --> GH
 ```
 
 <div dir="rtl" style="direction:rtl">
@@ -310,10 +310,10 @@ flowchart RL
 
 ```mermaid
 flowchart RL
-    A["⬆️ Push<br>לגיטהאב"] --> B["👀 Vercel מזהה<br>את הקומיט"]
-    B --> C["🏗️ Build<br>מוריד ובונה את הקוד"]
-    C --> D["🌍 Deploy<br>מפרסם לכתובת HTTPS"]
-    D --> E["✅ האתר מעודכן<br>תוך כדקה"]
+    A["⬆️ Push<br>⁧לגיטהאב⁩"] --> B["⁧👀 Vercel מזהה⁩<br>⁧את הקומיט⁩"]
+    B --> C["🏗️ Build<br>⁧מוריד ובונה את הקוד⁩"]
+    C --> D["🌍 Deploy<br>⁧מפרסם לכתובת HTTPS⁩"]
+    D --> E["⁧✅ האתר מעודכן⁩<br>⁧תוך כדקה⁩"]
 ```
 
 <div dir="rtl" style="direction:rtl">
@@ -338,12 +338,12 @@ flowchart RL
 
 ```mermaid
 flowchart TD
-    A["1️⃣ מבקשים מ-Claude בשפה חופשית"] --> B["2️⃣ Claude כותב קוד, בודק,<br>עושה commit + push"]
-    B --> C["3️⃣ GitHub שומר את הגרסה החדשה"]
-    C --> D["4️⃣ Vercel מזהה את הקומיט<br>ומפרסם דיפלוימנט חדש"]
-    D --> E["5️⃣ בודקים בטלפון 📱"]
-    E -- "עובד? מבקשים את הפיצ'ר הבא ✨" --> A
-    E -- "לא עובד? מתארים לקלוד את הבעיה 🐛" --> A
+    A["⁧1️⃣ מבקשים מ-Claude בשפה חופשית⁩"] --> B["⁧2️⃣ Claude כותב קוד, בודק,⁩<br>⁧עושה commit + push⁩"]
+    B --> C["⁧3️⃣ GitHub שומר את הגרסה החדשה⁩"]
+    C --> D["⁧4️⃣ Vercel מזהה את הקומיט⁩<br>⁧ומפרסם דיפלוימנט חדש⁩"]
+    D --> E["⁧5️⃣ בודקים בטלפון 📱⁩"]
+    E -- "⁧עובד? מבקשים את הפיצ'ר הבא ✨⁩" --> A
+    E -- "⁧לא עובד? מתארים לקלוד את הבעיה 🐛⁩" --> A
 ```
 
 <div dir="rtl" style="direction:rtl">
@@ -448,7 +448,7 @@ npm run gen-keys  # מדפיס זוג מפתחות חדש
 |---|---|
 | <span dir="ltr"><code>⁨VAPID_PUBLIC_KEY⁩</code></span> | מהפלט של <span dir="ltr"><code>⁨gen-keys⁩</code></span> |
 | <span dir="ltr"><code>⁨VAPID_PRIVATE_KEY⁩</code></span> | מהפלט של <span dir="ltr"><code>⁨gen-keys⁩</code></span> (סודי!) |
-| <span dir="ltr"><code>⁨VAPID_SUBJECT⁩</code></span> | <span dir="ltr"><code>⁨mailto:המייל@שלכם.com⁩</code></span> |
+| <span dir="ltr"><code>⁨VAPID_SUBJECT⁩</code></span> | <span dir="ltr"><code>⁨mailto:you@example.com⁩</code></span> |
 | <span dir="ltr"><code>⁨DEVICE_TOKEN⁩</code></span> | סיסמה ארוכה ואקראית שאתם ממציאים |
 
 **6ד. ⚠️ הצעד שכולם שוכחים: Redeploy!** משתני סביבה נטענים רק בפריסה. **Deployments ← ⋯ ← Redeploy**.
@@ -471,10 +471,10 @@ npm run gen-keys  # מדפיס זוג מפתחות חדש
 <div dir="ltr" style="direction:ltr">
 
 ```cpp
-const char* WIFI_SSID    = "שם_הרשת_שלכם";
-const char* WIFI_PASS    = "סיסמת_הרשת";
-const char* RELAY_URL    = "https://<הפרויקט-שלכם>.vercel.app/api/notify";
-const char* DEVICE_TOKEN = "אותה-סיסמה-בדיוק-כמו-ב-Vercel";
+const char* WIFI_SSID    = "YOUR_WIFI_NAME";      // שם הרשת שלכם
+const char* WIFI_PASS    = "YOUR_WIFI_PASSWORD";  // סיסמת הרשת
+const char* RELAY_URL    = "https://YOUR-PROJECT.vercel.app/api/notify";
+const char* DEVICE_TOKEN = "YOUR-SECRET-TOKEN";   // אותה סיסמה בדיוק כמו בענן
 ```
 
 </div>
@@ -495,11 +495,11 @@ const char* DEVICE_TOKEN = "אותה-סיסמה-בדיוק-כמו-ב-Vercel";
 
 ```bash
 # בדיקת "דופק" — השרת חי? כמה מנויים?
-curl https://<הפרויקט-שלכם>.vercel.app/api/health
+curl https://YOUR-PROJECT.vercel.app/api/health
 
 # שליחת נוטיפיקיישן אמיתי מהטרמינל
-curl -X POST https://<הפרויקט-שלכם>.vercel.app/api/notify \
-  -H "Authorization: Bearer הסיסמה-שלכם" \
+curl -X POST https://YOUR-PROJECT.vercel.app/api/notify \
+  -H "Authorization: Bearer YOUR-SECRET-TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"title":"בדיקה","message":"שלום מהמחשב 👋"}'
 ```
@@ -557,18 +557,18 @@ curl -X POST https://<הפרויקט-שלכם>.vercel.app/api/notify \
 
 ```mermaid
 sequenceDiagram
-    participant P as 📱 האפליקציה בטלפון
-    participant S as ☁️ השרת שלנו (Vercel)
-    participant G as 🌐 שירות ה-Push של גוגל
-    Note over P,G: שלב ההרשמה (פעם אחת)
-    P->>G: אני רוצה לקבל נוטיפיקיישנים
-    G-->>P: בבקשה — הנה כתובת מנוי ייחודית
-    P->>S: שמור את כתובת המנוי שלי (subscribe)
-    Note over S: הכתובת נשמרת ב-Redis
-    Note over P,G: שלב השליחה (בכל הודעה)
-    S->>G: הודעה מוצפנת 🔒 אל כתובת המנוי
-    G-->>P: דחיפה (Push) לטלפון
-    Note over P: ה-Service Worker מתעורר<br>ומציג נוטיפיקיישן 🔔
+    participant P as ⁧📱 האפליקציה בטלפון⁩
+    participant S as ⁧☁️ השרת שלנו (Vercel)⁩
+    participant G as ⁧🌐 שירות ה-Push של גוגל⁩
+    Note over P,G: ⁧שלב ההרשמה (פעם אחת)⁩
+    P->>G: ⁧אני רוצה לקבל נוטיפיקיישנים⁩
+    G-->>P: ⁧בבקשה — הנה כתובת מנוי ייחודית⁩
+    P->>S: ⁧שמור את כתובת המנוי שלי (subscribe)⁩
+    Note over S: ⁧הכתובת נשמרת ב-Redis⁩
+    Note over P,G: ⁧שלב השליחה (בכל הודעה)⁩
+    S->>G: ⁧הודעה מוצפנת 🔒 אל כתובת המנוי⁩
+    G-->>P: ⁧דחיפה (Push) לטלפון⁩
+    Note over P: ⁧ה-Service Worker מתעורר⁩<br>⁧ומציג נוטיפיקיישן 🔔⁩
 ```
 
 <div dir="rtl" style="direction:rtl">
@@ -639,7 +639,7 @@ void loop() {
 ```
 POST /api/notify HTTP/1.1
 Host: esp32-app1.vercel.app
-Authorization: Bearer הסיסמה-הסודית
+Authorization: Bearer YOUR-SECRET-TOKEN
 Content-Type: application/json
 
 { "title": "ESP32", "message": "Button pressed! ⚡" }
