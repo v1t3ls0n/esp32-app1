@@ -1,5 +1,7 @@
 **🇮🇱 [המדריך הזה זמין גם בעברית](README.md)**
 
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-esp32--app1.vercel.app-2ea44f)](https://esp32-app1.vercel.app/) [![Deployed on Vercel](https://img.shields.io/badge/▲_Vercel-deployed-black)](https://esp32-app1.vercel.app/) [![Built with Claude Code](https://img.shields.io/badge/🤖_Built_with-Claude_Code-cc785c)](https://claude.ai/code)
+
 # 📘 Lesson Summary — Claude Code, Git/GitHub, Vercel & ESP32
 
 > A complete beginner's guide: what we built, how each tool works, and why we need it at all.
@@ -35,9 +37,12 @@ But the real goal was bigger: learning **how developers work today** —
 3. [Part C — The tools in depth: Git, GitHub, Claude Code, Vercel](#part-c)
 4. [Part D — The workflow: the full loop](#part-d)
 5. [Part E — The practical step-by-step guide + troubleshooting](#part-e)
+    - [🔧 Troubleshooting common problems](#troubleshoot)
 6. [Part F — How the system works on the inside](#part-f)
 7. [Part G — What happens in the ESP32 code](#part-g)
 8. [Part H — Stuck? This is how you actually learn](#part-h)
+    - [🛠️ Hands-on practice for students](#practice)
+    - [📝 Self-quiz](#quiz)
 9. [Part I — Glossary](#part-i)
 10. [Lesson recap](#recap)
 
@@ -545,6 +550,7 @@ curl -X POST https://YOUR-PROJECT.vercel.app/api/notify \
 
 </details>
 
+<a name="troubleshoot"></a>
 ## 🔧 Troubleshooting common problems
 
 | Problem | Likely cause | Fix |
@@ -732,7 +738,39 @@ Our demo (button → notification) is just a skeleton. Now connect everything yo
 And how do you start any of these? Exactly — **open a session and ask Claude.** And now you know how to phrase it well 😉
 
 
-## H.5 📝 Self-quiz — check that you really understood
+<a name="practice"></a>
+## H.5 🛠️ Hands-on practice — your turn now
+
+The only way to really learn is to touch. Four exercises, easy to hard — all on the system you already built:
+
+**Exercise 1 — Your own message** ⭐
+
+Change the text sent on a BOOT press ("Button pressed!") to something personal, re-upload to the board, and verify the new notification arrives on your phone.
+
+*What you practice: editing code in the Arduino IDE and uploading to the board.*
+
+**Exercise 2 — Break the password on purpose** ⭐
+
+Change one letter of the DEVICE_TOKEN in the firmware, upload, and press BOOT. Open the Serial Monitor and see the 401 with your own eyes. Now fix it back and verify it works again.
+
+*What you practice: recognizing an authentication error and reading logs — the most common debugging there is.*
+
+**Exercise 3 — Upgrade the message with Claude** ⭐⭐
+
+Ask Claude to change the system so the button message also includes the press count ("press number 7 ⚡"). Let it work — then ask it to explain exactly what it changed and where.
+
+*What you practice: phrasing a request to an agent, and reading the change instead of just receiving it.*
+
+**Exercise 4 — Your own new endpoint** ⭐⭐⭐
+
+Ask Claude to add a new endpoint called /api/stats that returns how many notifications were sent in total. (Hint: the counter must live in Redis — pause and answer for yourself why not in memory 😉.) Test it in a browser tab, just like /api/health.
+
+*What you practice: APIs, persistent storage, and the full loop — request, code, commit, deployment, test.*
+
+📌 And for all the exercises: stuck? There's a formula — section H.1 😉
+
+<a name="quiz"></a>
+## H.6 📝 Self-quiz — check that you really understood
 
 Ten questions. Try answering out loud before opening the answer — it's the only way to know whether you understood or just "went with the flow" 😉
 
