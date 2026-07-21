@@ -29,6 +29,7 @@ But the real goal was bigger: learning **how developers work today** —
 - 📚 **Hit an unfamiliar professional term?** That's on purpose — it's how the industry talks, and it's worth getting used to. But the first time a term appears there will always be a **plain-language explanation next to it**, and Part I collects them all in a glossary.
 - 🎯 **In a hurry to build?** Jump straight to Part E — the practical step-by-step guide.
 - 🤔 **Want to truly understand?** Read in order — each part builds on the previous one.
+- 🧑‍🏫 **Teaching this lesson yourself?** There's a full [teacher's lesson plan](docs/lesson-plan-he.md) (Hebrew) — 90 minutes, with checkpoints and classroom tips.
 
 ### 📑 Table of contents
 
@@ -570,6 +571,28 @@ curl -X POST https://YOUR-PROJECT.vercel.app/api/notify \
 # Part F — 🏗️ How the system works on the inside
 
 Now that we've seen the "what", let's understand the "how" — in plain language.
+
+## F.0 🗺️ The file map — who does what
+
+Before diving into the mechanisms, here is every file in the repo and its job in one sentence. Come back to this table whenever Claude mentions a file:
+
+| File | Job |
+|---|---|
+| `public/index.html` | The app's page — what you see on screen |
+| `public/app.js` | The in-browser logic: subscribing to notifications, the test button |
+| `public/sw.js` | The Service Worker — shows notifications even when the app is closed |
+| `public/manifest.json` | The PWA's "ID card": name, icon, colors |
+| `public/icons/` | The icons (generated with a small Python script) |
+| `api/subscribe.js` | Registers a new phone — writes the subscription to Redis |
+| `api/notify.js` | Receives from the ESP32, checks the password, pushes to all subscribers |
+| `api/vapidPublicKey.js` | Hands the app the public key |
+| `api/health.js` | Pulse check — alive? how many subscribers? |
+| `api/_lib/store.js` | The storage layer — the only thing that talks to Redis |
+| `firmware/esp32-notify/esp32-notify.ino` | The ESP32 code: WiFi connection and sending the POST |
+| `vercel.json` | Vercel settings (e.g. headers for the Service Worker) |
+| `package.json` | The list of libraries the server side needs |
+
+📌 Notice the principle: **every file does one thing.** That's no accident — it keeps code readable, and it makes it easy to ask Claude to change exactly what's needed.
 
 ## F.1 📱 What is a PWA?
 
