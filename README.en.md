@@ -344,6 +344,22 @@ flowchart TD
 
 📌 This is the most important point of the lesson: **your job is not to type code — it's to define what you want, understand what's happening, and verify it works.** The tools do the rest.
 
+## 🔬 Proof from the field — this project's real history
+
+Everything you've read so far isn't theory. These are the **real** deployments of this very project, as recorded in Vercel (pulled directly through Claude's Vercel connection):
+
+| What the commit contained | From push to build start | Result |
+|---|---|---|
+| Adding the screenshot and the self-quiz | 3 seconds | ✅ READY |
+| Table of contents and term glosses | 3 seconds | ✅ READY |
+| The "Stuck? This is how you learn" part | 3 seconds | ✅ READY |
+| The RTL fixes in the diagrams | 3 seconds | ✅ READY |
+| Converting the server to serverless | 3 seconds | ✅ READY |
+
+In total: **9 deployments** since the project was born, each created **automatically** from a commit to main, averaging 3 seconds from the moment the code was pushed until Vercel started building — and nobody clicked a single button.
+
+📌 And a meta moment: notice that this guide itself is part of the repo — which means **the commit that added this very table became deployment number 10** 😄 That's exactly the loop from the diagram above, happening before your eyes.
+
 ---
 
 <a name="part-e"></a>
