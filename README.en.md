@@ -752,7 +752,7 @@ Our demo (button → notification) is just a skeleton. Now connect everything yo
 
 | Project | What you'll learn | Difficulty |
 |---|---|---|
-| The distance sensor from lesson 2 sends "someone's at the door!" 🚪 | Connecting familiar hardware to the cloud | ⭐ |
+| The distance sensor from lesson 2 sends "someone's at the door!" 🚪 — **[ready-made guide!](docs/project-doorbell-he.md)** (Hebrew; code in `firmware/esp32-doorbell`) | Connecting familiar hardware to the cloud | ⭐ |
 | A temperature sensor with an above-threshold alert 🌡️ | Conditions, calibration, thresholds | ⭐ |
 | A button in the app that lights an LED on the ESP32 💡 | Two-way communication (phone → board!) | ⭐⭐ |
 | A history of recent messages in the app 📜 | Storing data in Redis | ⭐⭐ |
