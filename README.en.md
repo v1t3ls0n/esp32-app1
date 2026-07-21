@@ -19,11 +19,32 @@ But the real goal was bigger: learning **how developers work today** —
 
 📌 Our project links:
 
-- The code (GitHub repository): https://github.com/v1t3ls0n/esp32-app1
-- The live app (Vercel deployment): https://esp32-app1.vercel.app/
+- The code: https://github.com/v1t3ls0n/esp32-app1 — this is the **repo** (repository): the "project folder" living in the cloud, with all the code and its entire history
+- The live app: https://esp32-app1.vercel.app/ — this is the **deployment**: the published version anyone can open on the internet
+
+## 🧭 How to read this guide
+
+- 📚 **Hit an unfamiliar professional term?** That's on purpose — it's how the industry talks, and it's worth getting used to. But the first time a term appears there will always be a **plain-language explanation next to it**, and Part I collects them all in a glossary.
+- 🎯 **In a hurry to build?** Jump straight to Part E — the practical step-by-step guide.
+- 🤔 **Want to truly understand?** Read in order — each part builds on the previous one.
+
+### 📑 Table of contents
+
+1. [Part A — The big picture: what did we build](#part-a)
+2. [Part B — Fundamentals: server, cloud, HTTP, JSON, API](#part-b)
+3. [Part C — The tools in depth: Git, GitHub, Claude Code, Vercel](#part-c)
+4. [Part D — The workflow: the full loop](#part-d)
+5. [Part E — The practical step-by-step guide + troubleshooting](#part-e)
+6. [Part F — How the system works on the inside](#part-f)
+7. [Part G — What happens in the ESP32 code](#part-g)
+8. [Part H — Stuck? This is how you actually learn](#part-h)
+9. [Part I — Glossary](#part-i)
+10. [Lesson recap](#recap)
 
 ---
 
+
+<a name="part-a"></a>
 # Part A — 🧩 The big picture
 
 Before diving into the tools, let's understand what the system does. This is the journey of a single message:
@@ -49,6 +70,7 @@ Three players:
 
 ---
 
+<a name="part-b"></a>
 # Part B — 🌐 Fundamentals: the internet in plain language
 
 Before talking about the tools, we need a few concepts the whole system is built on. Without them — everything sounds like magic. With them — everything makes sense.
@@ -144,6 +166,7 @@ And this is **our** server's menu:
 
 ---
 
+<a name="part-c"></a>
 # Part C — 🛠️ The tools, in depth
 
 ## C.1 📚 Git — a time machine for code
@@ -304,6 +327,7 @@ This process is called a **deployment**, and in the professional world — **CI/
 
 ---
 
+<a name="part-d"></a>
 # Part D — 🔁 The workflow: the full loop
 
 Now that we know all the players, this is what working actually looks like — over and over:
@@ -322,6 +346,7 @@ flowchart TD
 
 ---
 
+<a name="part-e"></a>
 # Part E — 👣 The complete step-by-step guide
 
 The practical part — each step with exactly what to click, what should happen, and what to do if it doesn't.
@@ -396,7 +421,7 @@ After a few minutes of work (writing, testing, fixing) — the repo looks like t
 
 1. Go to vercel.com/new
 2. In the list of your GitHub repos — click **Import** next to `esp32-app1`
-3. **Framework Preset**: choose **Other** (we have no framework — static files + functions)
+3. **Framework Preset**: choose **Other**. (What's a framework? A ready-made "skeleton" for building websites, like React. We built without one — just plain files and functions, hence Other)
 4. Click **Deploy** and wait about a minute ⏳
 
 ✔️ **What should happen:** a celebration screen 🎉 with a URL like `https://esp32-app1.vercel.app`. The site is live!
@@ -405,7 +430,7 @@ After a few minutes of work (writing, testing, fixing) — the repo looks like t
 
 ## Step 6: Configure secrets — environment variables 🔐
 
-**6a. Generate VAPID keys** (the key pair that identifies our server):
+**6a. Generate VAPID keys** (the key pair that identifies our server to the notification service — the full explanation awaits in Part F):
 
 No terminal needed — just write to Claude in your session:
 
@@ -462,7 +487,7 @@ const char* DEVICE_TOKEN = "YOUR-SECRET-TOKEN"  // same password as in Vercel;
 
 1. Select the board (**Tools → Board → ESP32 Dev Module**) and the port
 2. **Upload** ⬆️
-3. Open the **Serial Monitor** at **115200** baud to watch what happens
+3. Open the **Serial Monitor** (the window that shows the board's printouts — you know it from previous lessons) at **115200** baud
 
 ✔️ **What should happen:** the Serial Monitor shows the WiFi connecting, and then — **the phone rings**: "The ESP32 is online! 🚀". From now on, every press of the board's **BOOT** button = another notification ⚡
 
@@ -517,6 +542,7 @@ curl -X POST https://YOUR-PROJECT.vercel.app/api/notify \
 
 ---
 
+<a name="part-f"></a>
 # Part F — 🏗️ How the system works on the inside
 
 Now that we've seen the "what", let's understand the "how" — in plain language.
@@ -595,6 +621,7 @@ This is the simplest form of **authentication** — a huge topic in software, me
 
 ---
 
+<a name="part-g"></a>
 # Part G — 🤖 What happens in the ESP32 code?
 
 We won't go line by line (the full code is in the repo, under `firmware/`), but this is the essence:
@@ -628,6 +655,7 @@ Content-Type: application/json
 
 ---
 
+<a name="part-h"></a>
 # Part H — 🆘 Stuck? This is how you actually learn
 
 First of all, breathe: **getting stuck is not a failure of learning — it IS the learning.** People who never get stuck aren't building anything. The difference between beginners and experienced developers isn't that the experienced don't get stuck — it's that they have a method for getting out. Here's the method.
@@ -687,6 +715,7 @@ And how do you start any of these? Exactly — **open a session and ask Claude.*
 
 ---
 
+<a name="part-i"></a>
 # Part I — 📖 Glossary
 
 | Term | Plain-language meaning |
@@ -721,6 +750,7 @@ And how do you start any of these? Exactly — **open a session and ask Claude.*
 
 ---
 
+<a name="recap"></a>
 # 🏁 Lesson recap
 
 ✅ We learned the fundamentals: server, cloud, HTTP, JSON, API<br>
