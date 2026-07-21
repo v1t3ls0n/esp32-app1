@@ -22,7 +22,7 @@
 ⁧📌 לינקים של הפרויקט שלנו:⁩
 
 - ⁧הקוד (הריפו בגיטהאב): <span dir="ltr">https://github.com/v1t3ls0n/esp32-app1</span>⁩
-- ⁧האפליקציה החיה (ה-Deployment ב-Vercel): <span dir="ltr">https://esp32-app1-dve4lt4f2-v1t3ls0ns-projects.vercel.app/</span>⁩
+- ⁧האפליקציה החיה (ה-Deployment ב-Vercel): <span dir="ltr">https://esp32-app1.vercel.app/</span>⁩
 
 ---
 

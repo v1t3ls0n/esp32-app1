@@ -20,7 +20,7 @@ But the real goal was bigger: learning **how developers work today** —
 📌 Our project links:
 
 - The code (GitHub repository): https://github.com/v1t3ls0n/esp32-app1
-- The live app (Vercel deployment): https://esp32-app1-dve4lt4f2-v1t3ls0ns-projects.vercel.app/
+- The live app (Vercel deployment): https://esp32-app1.vercel.app/
 
 ---
 
