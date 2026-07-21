@@ -387,7 +387,7 @@ After a few minutes of work (writing, testing, fixing) — the repo looks like t
 | `public/` | The app (PWA): HTML page, JavaScript, icons, and the Service Worker |
 | `api/` | Four server functions that run in Vercel's cloud |
 | `firmware/` | The ESP32 sketch for the Arduino IDE |
-| `scripts/` | A one-off script for generating VAPID keys |
+| `scripts/` | A one-off script for generating VAPID keys (Claude runs it for you in step 6) |
 | `README.md` | The guide you're reading right now 😉 (condensed technical instructions: `docs/DEPLOY.md`) |
 
 ✔️ **What should happen:** you see the files on GitHub, with a new commit in the history.
@@ -628,7 +628,66 @@ Content-Type: application/json
 
 ---
 
-# Part H — 📖 Glossary
+# Part H — 🆘 Stuck? This is how you actually learn
+
+First of all, breathe: **getting stuck is not a failure of learning — it IS the learning.** People who never get stuck aren't building anything. The difference between beginners and experienced developers isn't that the experienced don't get stuck — it's that they have a method for getting out. Here's the method.
+
+## H.1 🗣️ How to tell Claude about a problem — the formula
+
+The worst possible message is: "it doesn't work". Claude doesn't know what "it" is, what you tried, or what you saw. Instead — the 4-part formula:
+
+1. **What I tried to do** — "I pressed the BOOT button on the board"
+2. **What I expected to happen** — "a notification should arrive on my phone"
+3. **What actually happened** — "nothing arrived, and an error appeared in the Serial Monitor"
+4. **The evidence** — the **complete** error message, copy-pasted (not paraphrased from memory!), a screenshot, whatever the Serial Monitor or Vercel's Logs show
+
+Here's how that looks in practice:
+
+> ❌ **Bad:** "notifications are broken, fix it"
+>
+> ✅ **Excellent:** "I uploaded the code to the ESP32, the Serial Monitor shows it connected to WiFi, but when I press BOOT it prints: HTTP code 401. I expected a notification. What's wrong?"
+
+With the second message, Claude will solve it in seconds (hint: it's the DEVICE_TOKEN 😉).
+
+📌 And don't be shy: **there are no stupid questions.** Claude doesn't judge, doesn't sigh, and doesn't tell anyone. This is your chance to ask everything you never dared to.
+
+## H.2 🧭 The rescue method — step by step
+
+When something breaks, the temptation is to change ten things at once and hope. Don't.
+
+1. **One change — one test.** If you changed three things and it works, you don't know what fixed it. If it's more broken — you don't know what broke it.
+2. **Go back to the last point that worked.** This is exactly what Git is for! Ask Claude: "revert the code to the previous commit". Nothing is ever truly lost — ever.
+3. **Follow the flow.** Like the troubleshooting table above: did the ESP32 send? → did the server receive? → are there subscribers? → is the permission granted? Find the first link that breaks — that's where the problem is.
+4. **Let Claude diagnose.** "Check what the API returns", "look at the code and tell me what could cause a 401" — it knows how to investigate on its own.
+5. **A 10-minute break** is worth more than an hour of frustrated staring. Seriously. It's science 😄
+
+## H.3 🎓 How to learn with an AI agent — without becoming dependent on it
+
+The real danger isn't that Claude makes a mistake — it's that you stop understanding. The principle: **Claude writes, you understand.** And when you don't understand — that's exactly the moment to stop and ask:
+
+- 🔍 **"Explain what you did and why"** — after every big change. Claude is a great teacher, not just a programmer.
+- 📖 **"Explain this file to me line by line, like I'm a beginner"** — for any file that makes you curious.
+- 🧪 **"What happens if I change X?"** — and then actually change it, and watch. The fastest way to understand how something works is to break it on purpose. Git protects you — nothing can truly be destroyed.
+- ❓ **"Ask me 5 questions about what we built"** — a reverse pop quiz. You'll be surprised what it reveals.
+- 🗣️ **The golden rule:** if you can't explain to a friend in one sentence what the system does and how — you haven't finished learning it. Keep asking Claude until you can.
+
+## H.4 🚀 Where to go next — ideas for your next project
+
+Our demo (button → notification) is just a skeleton. Now connect everything you've learned in the course to it:
+
+| Project | What you'll learn | Difficulty |
+|---|---|---|
+| The distance sensor from lesson 2 sends "someone's at the door!" 🚪 | Connecting familiar hardware to the cloud | ⭐ |
+| A temperature sensor with an above-threshold alert 🌡️ | Conditions, calibration, thresholds | ⭐ |
+| A button in the app that lights an LED on the ESP32 💡 | Two-way communication (phone → board!) | ⭐⭐ |
+| A history of recent messages in the app 📜 | Storing data in Redis | ⭐⭐ |
+| Several ESP32 boards, each with its own name 🏠 | Device identity, architecture | ⭐⭐⭐ |
+
+And how do you start any of these? Exactly — **open a session and ask Claude.** And now you know how to phrase it well 😉
+
+---
+
+# Part I — 📖 Glossary
 
 | Term | Plain-language meaning |
 |---|---|
