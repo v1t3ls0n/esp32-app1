@@ -458,7 +458,9 @@ Claude runs the script on its cloud machine and prints two lines: `VAPID_PUBLIC_
 3. Tap **"Send test notification"** → a local notification should pop 🔔
 4. Chrome menu (⋮) → **"Add to Home screen"** → **Install**
 
-✔️ **What should happen:** a blue bell icon on the home screen, opening as a full-screen app.
+✔️ **What should happen:** a blue bell icon on the home screen, opening as a full-screen app. This is what it looks like:
+
+<p align="center"><img src="docs/images/app-phone.png" alt="ESP32 Notifier app" width="300"></p>
 
 ## Step 8: Flash the ESP32 🔥
 
@@ -712,6 +714,82 @@ Our demo (button → notification) is just a skeleton. Now connect everything yo
 | Several ESP32 boards, each with its own name 🏠 | Device identity, architecture | ⭐⭐⭐ |
 
 And how do you start any of these? Exactly — **open a session and ask Claude.** And now you know how to phrase it well 😉
+
+
+## H.5 📝 Self-quiz — check that you really understood
+
+Ten questions. Try answering out loud before opening the answer — it's the only way to know whether you understood or just "went with the flow" 😉
+
+<details>
+<summary>1️⃣ What's the difference between Git and GitHub?</summary>
+
+Git is the software that manages code versions (the time machine). GitHub is a website that hosts Git repositories in the cloud. Like the difference between email (technology) and Gmail (service).
+
+</details>
+
+<details>
+<summary>2️⃣ What is a commit, and why does its message matter?</summary>
+
+A snapshot of all the files at a moment in time. The message explains "what changed and why" — without it, the history is a list of meaningless points and you can't find which one to go back to.
+
+</details>
+
+<details>
+<summary>3️⃣ The notification arrives even when the app is closed. Which component is responsible?</summary>
+
+The Service Worker — a piece of code the browser runs in the background even when the app is closed. It "wakes up" when a push message arrives and shows the notification.
+
+</details>
+
+<details>
+<summary>4️⃣ Why doesn't our server send the notification directly to the phone?</summary>
+
+Because the phone has no fixed network address (it hops between WiFi and cellular). So we send through the browser's central push service (Google's, for Chrome), which keeps a permanent open connection to the phone.
+
+</details>
+
+<details>
+<summary>5️⃣ A stranger sends a request to notify without the password. What status code do they get, and why?</summary>
+
+401 (Unauthorized). The server compares the token in the Authorization header against the DEVICE_TOKEN in the environment variables — no match, request rejected. That's how you stop the whole internet from flooding you with notifications.
+
+</details>
+
+<details>
+<summary>6️⃣ Why can't we keep the subscriber list in a regular file on the server?</summary>
+
+Because on Vercel there is no permanent "server" — there are serverless functions that wake up per request and vanish, remembering nothing in between. Anything that must persist needs an external database — for us, Redis.
+
+</details>
+
+<details>
+<summary>7️⃣ Describe the request the ESP32 sends when BOOT is pressed (method, address, header, body)</summary>
+
+A POST request to the server's /api/notify address, with the password in the Authorization header (Bearer format), and a JSON body containing title and message. The server authenticates and pushes to all subscribers.
+
+</details>
+
+<details>
+<summary>8️⃣ You changed an environment variable in Vercel and nothing happened. What did you forget?</summary>
+
+Redeploy. Environment variables load only at deploy time — changing them in the dashboard doesn't affect the version already running.
+
+</details>
+
+<details>
+<summary>9️⃣ What is an endpoint? Give an example from the project</summary>
+
+A specific address within the API that does one specific thing — a "dish on the menu" of the server. For example our /api/health: answers whether the server is alive and how many subscribers are registered.
+
+</details>
+
+<details>
+<summary>🔟 A friend asks: "so what did you actually build?" — answer in one sentence</summary>
+
+For example: "I built a system where an ESP32 sends a message over the internet to a cloud server, and the server pushes it as a notification to my phone — even when the app is closed." If you managed without peeking — you've truly finished this lesson. 🎓
+
+</details>
+
 
 ---
 
