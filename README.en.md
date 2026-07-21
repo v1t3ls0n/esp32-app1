@@ -326,14 +326,24 @@ flowchart TD
 
 The practical part — each step with exactly what to click, what should happen, and what to do if it doesn't.
 
+> ### 🚨 The most important principle before starting
+>
+> **You don't need a terminal. You don't need to install Git. You don't need a command line.**
+>
+> All the work happens **in the browser**: GitHub in one tab, Claude in another, Vercel in a third.
+> The **only** thing you do on your own computer: copy the ESP32 code into the Arduino IDE (or PlatformIO) and upload it to the board — exactly like in all the previous lessons.
+>
+> If a terminal command appears in this guide — it's there only for understanding, or for those who want it. **You can always ask Claude to run it instead.**
+
 ## Step 0: What you need before starting 🎒
 
 - ✅ A **GitHub** account (free) — github.com/signup
-- ✅ A **Vercel** account (free) — vercel.com/signup → easiest to sign up **with your GitHub account** (then they're connected automatically)
+- ✅ A **Vercel** account (free) — vercel.com/signup → easiest to sign up with the **Continue with GitHub** button (then they're connected automatically)
 - ✅ Access to **Claude** — claude.ai
-- ✅ **Arduino IDE** installed, with ESP32 board support
+- ✅ **Arduino IDE** or **PlatformIO** — whatever you've been using in the course
 - ✅ An **ESP32** board + USB cable
 - ✅ An **Android phone with Chrome**
+- ❌ **You do NOT need:** a terminal, Node.js, or Git installed — nothing. Everything happens in the browser.
 
 ## Step 1: Create a repo on GitHub 📁
 
@@ -346,9 +356,14 @@ The practical part — each step with exactly what to click, what should happen,
 
 ## Step 2: Open a Claude Code session on the repo 🤖
 
-1. Go to claude.ai/code (or install the CLI in your terminal)
-2. Connect your GitHub account and pick the repo
-3. From this moment Claude can read, write, run and push
+All in the browser:
+
+1. Go to claude.ai/code
+2. First time only: click **Connect GitHub** and approve Claude's access to the repo (a GitHub authorization window)
+3. Open a new session and pick the `esp32-app1` repo
+4. From this moment Claude can read, write, run tests and push — **all on its own machine in the cloud, not on yours**
+
+📌 Note that last point: Claude has its own cloud computer where it works. That's why you don't install anything — when Claude "runs a command", it happens on its machine.
 
 ## Step 3: Ask for the system in plain language 💬
 
@@ -392,14 +407,11 @@ After a few minutes of work (writing, testing, fixing) — the repo looks like t
 
 **6a. Generate VAPID keys** (the key pair that identifies our server):
 
-On your computer, in the project folder:
+No terminal needed — just write to Claude in your session:
 
-```bash
-npm install       # installs the libraries
-npm run gen-keys  # prints a fresh key pair
-```
+> "Generate a VAPID key pair for me and print it here, so I can copy it into Vercel"
 
-(Don't have the project locally? Just ask Claude to run it and print the output.)
+Claude runs the script on its cloud machine and prints two lines: `VAPID_PUBLIC_KEY` and `VAPID_PRIVATE_KEY`. Keep that tab open — you'll copy from it in a moment.
 
 **6b. Connect a database:** in the Vercel dashboard → **Storage** → **Create Database** → **Upstash Redis** → connect it to the project. The two connection variables are added automatically. ✅
 
@@ -407,10 +419,10 @@ npm run gen-keys  # prints a fresh key pair
 
 | Variable | Value |
 |---|---|
-| `VAPID_PUBLIC_KEY` | from the `gen-keys` output |
-| `VAPID_PRIVATE_KEY` | from the `gen-keys` output (secret!) |
-| `VAPID_SUBJECT` | `mailto:your@email.com` |
-| `DEVICE_TOKEN` | a long random password you invent |
+| `VAPID_PUBLIC_KEY` | from Claude's output |
+| `VAPID_PRIVATE_KEY` | from Claude's output (secret!) |
+| `VAPID_SUBJECT` | `mailto:you@example.com` (with your real email) |
+| `DEVICE_TOKEN` | a long random password you invent (keep it handy — you'll need it in step 8) |
 
 **6d. ⚠️ The step everyone forgets: Redeploy!** Environment variables load only at deploy time. **Deployments → ⋯ → Redeploy**.
 
@@ -425,36 +437,70 @@ npm run gen-keys  # prints a fresh key pair
 
 ## Step 8: Flash the ESP32 🔥
 
-1. Open `firmware/esp32-notify/esp32-notify.ino` in the Arduino IDE
-2. Update the **config block** at the top of the file:
+This is the **only** step that happens on your own computer — and it's just copy-paste:
+
+**8a. Copy the code from GitHub (in the browser):**
+
+1. Open the repo on GitHub → enter the `firmware/esp32-notify` folder → click the file `esp32-notify.ino`
+2. Above the file content there's a **Copy** button (the 📋 two-squares icon) — click it. The whole code is now on your clipboard
+
+**8b. Paste into the Arduino IDE (or PlatformIO):**
+
+1. Open a new sketch → delete the empty template → **paste** (Ctrl+V)
+2. Update **only** the 4 lines of the config block at the top of the file:
 
 ```cpp
 const char* WIFI_SSID    = "YOUR_WIFI_NAME";
 const char* WIFI_PASS    = "YOUR_WIFI_PASSWORD";
-const char* RELAY_URL    = "https://<your-project>.vercel.app/api/notify";
-const char* DEVICE_TOKEN = "exactly-the-same-password-as-in-vercel";
+const char* RELAY_URL    = "https://YOUR-PROJECT.vercel.app/api/notify";
+const char* DEVICE_TOKEN = "YOUR-SECRET-TOKEN"  // same password as in Vercel;
 ```
 
-3. Select the board (**Tools → Board → ESP32 Dev Module**) and the port
-4. **Upload** ⬆️
-5. Open the **Serial Monitor** at **115200** baud to watch what happens
+📌 Where do the values come from? `RELAY_URL` = the address from Vercel (step 5) with `/api/notify` appended. `DEVICE_TOKEN` = **exactly** the password you invented in step 6c.
+
+**8c. Upload to the board** — just like in all the previous lessons:
+
+1. Select the board (**Tools → Board → ESP32 Dev Module**) and the port
+2. **Upload** ⬆️
+3. Open the **Serial Monitor** at **115200** baud to watch what happens
 
 ✔️ **What should happen:** the Serial Monitor shows the WiFi connecting, and then — **the phone rings**: "The ESP32 is online! 🚀". From now on, every press of the board's **BOOT** button = another notification ⚡
 
 ## Step 9: Test and diagnose 🧪
 
-You can test the server without the ESP32, from any computer:
+Three ways to test — none of them needs a terminal:
+
+**Check 1 — is the server alive? (in the browser):** open this address in a new tab:
+
+`https://YOUR-PROJECT.vercel.app/api/health`
+
+That's a plain GET request — exactly what a browser does! You should see something like:
+
+```json
+{ "ok": true, "subscribers": 1 }
+```
+
+If `subscribers` is 0 — the phone isn't registered yet (go back to step 7).
+
+**Check 2 — a notification without the ESP32 (via Claude):** write to Claude in your session:
+
+> "Send a test notification through the project's API, the DEVICE_TOKEN is: ..."
+
+Claude sends the request from its cloud machine — and your phone should ring 🔔
+
+**Check 3 — the real thing:** press the **BOOT** button on the board → notification ⚡
+
+<details>
+<summary>🧑‍💻 Advanced (optional!): the same test from a terminal</summary>
 
 ```bash
-# "Pulse check" — is the server alive? how many subscribers?
-curl https://<your-project>.vercel.app/api/health
-
-# Send a real notification from the terminal
-curl -X POST https://<your-project>.vercel.app/api/notify \
-  -H "Authorization: Bearer your-password" \
+curl -X POST https://YOUR-PROJECT.vercel.app/api/notify \
+  -H "Authorization: Bearer YOUR-SECRET-TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"title":"Test","message":"Hello from my computer 👋"}'
 ```
+
+</details>
 
 ## 🔧 Troubleshooting common problems
 
